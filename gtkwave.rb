@@ -11,6 +11,7 @@ class Gtkwave < Formula
   depends_on "tcl-tk"
   depends_on "xz"
 
+  uses_from_macos "gperf" => :build
   uses_from_macos "bzip2"
   uses_from_macos "zlib"
 
