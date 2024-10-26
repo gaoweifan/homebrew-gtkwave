@@ -11,6 +11,9 @@ class Gtkwave < Formula
   depends_on "xz"
   depends_on "tcl-tk"
 
+  uses_from_macos "bzip2"
+  uses_from_macos "zlib"
+
   on_macos do
     depends_on "gtk-mac-integration"
     patch :p2 do
