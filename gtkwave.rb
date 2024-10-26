@@ -1,13 +1,20 @@
 class Gtkwave < Formula
   desc "GTK+ based waveform viewer"
   homepage "https://gtkwave.sourceforge.net/"
-  url "https://gtkwave.sourceforge.net/gtkwave-gtk3-3.3.121.tar.gz"
+  url "https://downloads.sourceforge.net/project/gtkwave/gtkwave-gtk3-3.3.121/gtkwave-gtk3-3.3.121.tar.gz"
   sha256 "54aa45788d6d52afb659c3aef335aafde0ef2c8990a7770f8eaa64e57f227346"
   license "GPL-2.0-or-later"
 
   depends_on "gobject-introspection" => :build
   depends_on "pkg-config" => :build
+  depends_on "at-spi2-core"
+  depends_on "cairo"
+  depends_on "gdk-pixbuf"
+  depends_on "gettext"
+  depends_on "glib"
   depends_on "gtk+3"
+  depends_on "harfbuzz"
+  depends_on "pango"
   depends_on "tcl-tk"
   depends_on "xz"
 
@@ -28,6 +35,10 @@ class Gtkwave < Formula
       url "https://github.com/yanjiew1/gtkwave/compare/0704899d...f3a85609.patch"
       sha256 "4d4c730777cb4f0a243387b8793e0230ea68d3ac8368c61118bbb984c096117a"
     end
+  end
+
+  on_linux do
+    depends_on "xorg-server" => :test
   end
 
   def install
@@ -59,7 +70,11 @@ class Gtkwave < Formula
       #500
     EOS
 
-    output = shell_output("#{bin}/gtkwave -x test.vcd 2>&1")
+    output = if OS.linux?
+      shell_output("xvfb-run --auto-servernum -- #{bin}/gtkwave -x test.vcd 2>&1")
+    else
+      shell_output("#{bin}/gtkwave -x test.vcd 2>&1")
+    end
 
     expected = <<~EOS
       [0] start time.
