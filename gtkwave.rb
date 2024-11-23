@@ -15,7 +15,7 @@ class Gtkwave < Formula
   depends_on "gtk+3"
   depends_on "harfbuzz"
   depends_on "pango"
-  depends_on "tcl-tk"
+  depends_on "tcl-tk@8"
   depends_on "xz"
 
   uses_from_macos "gperf" => :build
@@ -43,8 +43,8 @@ class Gtkwave < Formula
 
   def install
     system "./configure", "--enable-gtk3",
-                          "--with-tcl=#{Formula["tcl-tk"].opt_prefix}/lib",
-                          "--with-tk=#{Formula["tcl-tk"].opt_prefix}/lib",
+                          "--with-tcl=#{Formula["tcl-tk@8"].opt_prefix}/lib",
+                          "--with-tk=#{Formula["tcl-tk@8"].opt_prefix}/lib",
                           *std_configure_args
     system "make", "install"
   end
