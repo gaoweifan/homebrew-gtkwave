@@ -1,8 +1,8 @@
 class Gtkwave < Formula
   desc "GTK+ based waveform viewer"
   homepage "https://gtkwave.sourceforge.net/"
-  url "https://downloads.sourceforge.net/project/gtkwave/gtkwave-gtk3-3.3.121/gtkwave-gtk3-3.3.121.tar.gz"
-  sha256 "54aa45788d6d52afb659c3aef335aafde0ef2c8990a7770f8eaa64e57f227346"
+  url "https://downloads.sourceforge.net/project/gtkwave/gtkwave-gtk3-3.3.122/gtkwave-gtk3-3.3.122.tar.gz"
+  sha256 "6201b5f93dcaeafa92fc0ec4ad4baeaf60acf16fc8f019bbf061cf4ebf27938a"
   license "GPL-2.0-or-later"
 
   depends_on "gobject-introspection" => :build
@@ -24,17 +24,6 @@ class Gtkwave < Formula
 
   on_macos do
     depends_on "gtk-mac-integration"
-
-    # This patch removes the need of GtkSocket and GtkPlug on macOS because
-    # they are not available on macOS.
-    # It also fixes a problem that causes gtk-mac-integration not used.
-    #
-    # Once the upstream accepted this pull request, this patch can be removed.
-    # https://github.com/gtkwave/gtkwave/pull/389
-    patch :p2 do
-      url "https://github.com/yanjiew1/gtkwave/compare/0704899d...f3a85609.patch"
-      sha256 "4d4c730777cb4f0a243387b8793e0230ea68d3ac8368c61118bbb984c096117a"
-    end
   end
 
   on_linux do
