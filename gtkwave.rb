@@ -1,8 +1,8 @@
 class Gtkwave < Formula
   desc "GTK+ based waveform viewer"
   homepage "https://gtkwave.sourceforge.net/"
-  url "https://downloads.sourceforge.net/project/gtkwave/gtkwave-gtk3-3.3.122/gtkwave-gtk3-3.3.122.tar.gz"
-  sha256 "6201b5f93dcaeafa92fc0ec4ad4baeaf60acf16fc8f019bbf061cf4ebf27938a"
+  url "https://downloads.sourceforge.net/project/gtkwave/gtkwave-gtk3-3.3.123/gtkwave-gtk3-3.3.123.tar.gz"
+  sha256 "c2209d6c38e2bfe9747538bc3820d3525e88bd66c4ce092d04d2417e666bd797"
   license "GPL-2.0-or-later"
 
   depends_on "gobject-introspection" => :build
